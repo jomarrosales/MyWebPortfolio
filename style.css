@@ -53,6 +53,20 @@ h2 {
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+/* Favorites */
+.favorites {
+  margin: 15px;
+}
+
+.favorites img{
+  width: 200px;
+  height: 300px;
+}
+.favorites p{
+  text-align: center;
+  font-weight: bold;
+}
+
 /* Footer */
 footer {
   text-align: center;
@@ -67,6 +81,7 @@ footer {
 .container {
   display: flex;       /* enables flexbox */
   flex-direction: row; /* default, left to right */
+  justify-content: center;
 }
 
 
