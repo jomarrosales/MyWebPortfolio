@@ -100,7 +100,7 @@
               <p>WTW - Full-time</p>
               <p id="date-range"></p>
               <p>Manila Philippines - On-site</p>-->
-              <ul id="experience-list"></ul>
+              <ul id="experience-list" style="list-style:none; padding:0; margin:0;"></ul>
             </div>
           </div><br>
 
@@ -119,6 +119,13 @@
         <div class="project-card" style="width: 100%;">
           
           <div class="work-alignment">
+            <div style="margin-left: 10px;">
+              <!-- <h4>Associate Technology/TechBar</h4>
+              <p>WTW - Full-time</p>
+              <p id="date-range"></p>
+              <p>Manila Philippines - On-site</p>-->
+              <ul id="experience-list-2"></ul>
+            </div>
           </div>
 
         </div>
@@ -172,20 +179,25 @@
   function formatExperience(start, end, location, role) {
     const options = { year: 'numeric', month: 'long' };
     const startFormatted = start.toLocaleDateString('en-US', options);
-    const endFormatted = end ? end.toLocaleDateString('en-US', options) : "Present";
+    const endFormatted = end
+      ? end.toLocaleDateString('en-US', options)
+      : "Present";
     const duration = computeDuration(start, end || new Date());
 
-    // Wrap role in span with class "role"
-    return `<span class="role">${role}</span>: ${startFormatted} – ${endFormatted} (${duration.years} years, ${duration.months} months) · ${location}`;
+    return `
+      <strong>${role}</strong><br>
+      ${startFormatted} – ${endFormatted}
+      (${duration.years} years, ${duration.months} months)<br>
+      ${location}
+    `;
   }
 
-  // Example experiences with logos
   const experiences = [
     {
       start: new Date("2024-05-02"),
       end: null,
       location: "Manila Philippines - Onsite",
-      role: "Associate Technology/TechBar",
+      role: "Associate Technology / TechBar",
       logo: "images/wtw.png"
     },
     {
@@ -201,27 +213,67 @@
       location: "Manila Philippines - Onsite",
       role: "Technical Support Assistant",
       logo: "images/Terry.jpg"
+    },
+    {
+      start: new Date("2021-03-15"),
+      end: new Date("2022-03-15"),
+      location: "Manila Philippines - Onsite",
+      role: "IT and Data Analys",
+      logo: "images/cdc.png"
+    },
+    {
+      start: new Date("2020-06-1"),
+      end: new Date("2020-10-30"),
+      location: "Manila Philippines - Onsite",
+      role: "Information Technology",
+      logo: "images/boehringer.png"
+    },
+    {
+      start: new Date("2019-04-15"),
+      end: new Date("2020-10-30"),
+      location: "Manila Philippines - Onsite",
+      role: "Technical Support Engineer",
+      logo: "images/ics.png"
     }
   ];
 
-  const list = document.getElementById("experience-list");
-  experiences.forEach(exp => {
-    const li = document.createElement("li");
+  const listLeft = document.getElementById("experience-list");
+  const listRight = document.getElementById("experience-list-2");
 
-    // Add logo
+  experiences.forEach((exp, index) => {
+    const li = document.createElement("li");
+    li.style.display = "flex";
+    li.style.alignItems = "flex-start";
+    li.style.gap = "12px";
+    li.style.marginBottom = "16px";
+
     const img = document.createElement("img");
     img.src = exp.logo;
-    img.alt = `${exp.role} logo`;
+    img.style.width = "48px";
+    img.style.height = "48px";
 
-    const text = document.createElement("span");
-    // Use innerHTML so <span class="role"> is applied
-    text.innerHTML = formatExperience(exp.start, exp.end, exp.location, exp.role);
+    const text = document.createElement("div");
+    text.innerHTML = formatExperience(
+      exp.start,
+      exp.end,
+      exp.location,
+      exp.role
+    );
 
     li.appendChild(img);
     li.appendChild(text);
-    list.appendChild(li);
+
+    // ✅ FIRST 3 → LEFT CARD
+    if (index < 3) {
+      listLeft.appendChild(li);
+    }
+    // ✅ REMAINING → RIGHT CARD
+    else {
+      listRight.appendChild(li);
+    }
   });
 </script>
+
 
 
 
