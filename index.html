@@ -64,8 +64,9 @@
 
   <!-- Projects -->
   <section class="projects">
-    <h2>Projects</h2>
+    <h2>Develop</h2>
 
+    <div class="container">
     <div class="project-card">
       <h3>Acknowledgement App</h3>
       <p>Electronic acknowledgment system for requests.</p>
@@ -80,26 +81,52 @@
       <h3>Automated Notification</h3>
       <p>Automated email and Teams message notifications.</p>
     </div>
+    </diV>
+
   </section>
 
   <!-- Experience -->
   <section class="projects">
     <h2>Work Experience</h2>
 
-    <div class="project-card">
-      <h3>Acknowledgement App</h3>
-      <p>Electronic acknowledgment system for requests.</p>
-    </div>
+      <div class="container">
 
-    <div class="project-card">
-      <h3>Tracker App</h3>
-      <p>Tracks requests and generates acknowledgments.</p>
-    </div>
+        <div class="project-card" style="width: 100%;">
 
-    <div class="project-card">
-      <h3>Automated Notification</h3>
-      <p>Automated email and Teams message notifications.</p>
-    </div>
+          <div class="container work-alignment">
+            <!--<img src="images/wtw.png" alt="" style="width: 48px; height: 48px;">-->
+            <div style="margin-left: 10px;">
+              <!-- <h4>Associate Technology/TechBar</h4>
+              <p>WTW - Full-time</p>
+              <p id="date-range"></p>
+              <p>Manila Philippines - On-site</p>-->
+              <ul id="experience-list"></ul>
+            </div>
+          </div><br>
+
+          <!--<div class="container work-alignment">
+            <img src="images/wtw.png" alt="" style="width: 48px; height: 48px;">
+            <div style="margin-left: 10px;">
+              <h4>Associate Technology/TechBar</h4>
+              <p>WTW - Full-time</p>
+              <p id="date-range"></p>
+              <p>Manila Philippines - On-site</p>
+            </div>
+          </div>-->
+        
+        </div>
+
+        <div class="project-card" style="width: 100%;">
+          
+          <div class="work-alignment">
+          </div>
+
+        </div>
+
+      </div>
+        
+      
+    
   </section>
 
   <!-- Gallery -->
@@ -120,12 +147,84 @@
   <!-- Contact -->
   <section class="contact">
     <h2>Contact</h2>
-    <p>Email: <a href="mailto:jomarski1205@email.com">jomarski1205@email.com</a></p>
+    <p>Email: <a href="mailto:jomarski@email.com">jomarski@email.com</a></p>
   </section>
 
   <footer>
     <p>© 2026 Jomar Rosales</p>
   </footer>
+
+
+
+
+
+  <script>
+  function computeDuration(startDate, endDate) {
+    let years = endDate.getFullYear() - startDate.getFullYear();
+    let months = endDate.getMonth() - startDate.getMonth();
+    if (months < 0) {
+      years--;
+      months += 12;
+    }
+    return { years, months };
+  }
+
+  function formatExperience(start, end, location, role) {
+    const options = { year: 'numeric', month: 'long' };
+    const startFormatted = start.toLocaleDateString('en-US', options);
+    const endFormatted = end ? end.toLocaleDateString('en-US', options) : "Present";
+    const duration = computeDuration(start, end || new Date());
+
+    // Wrap role in span with class "role"
+    return `<span class="role">${role}</span>: ${startFormatted} – ${endFormatted} (${duration.years} years, ${duration.months} months) · ${location}`;
+  }
+
+  // Example experiences with logos
+  const experiences = [
+    {
+      start: new Date("2024-05-02"),
+      end: null,
+      location: "Manila Philippines - Onsite",
+      role: "Associate Technology/TechBar",
+      logo: "images/wtw.png"
+    },
+    {
+      start: new Date("2022-08-05"),
+      end: new Date("2024-05-02"),
+      location: "Manila Philippines - Onsite",
+      role: "Onsite Support",
+      logo: "images/atos.png"
+    },
+    {
+      start: new Date("2022-05-10"),
+      end: new Date("2022-08-05"),
+      location: "Manila Philippines - Onsite",
+      role: "Technical Support Assistant",
+      logo: "images/Terry.jpg"
+    }
+  ];
+
+  const list = document.getElementById("experience-list");
+  experiences.forEach(exp => {
+    const li = document.createElement("li");
+
+    // Add logo
+    const img = document.createElement("img");
+    img.src = exp.logo;
+    img.alt = `${exp.role} logo`;
+
+    const text = document.createElement("span");
+    // Use innerHTML so <span class="role"> is applied
+    text.innerHTML = formatExperience(exp.start, exp.end, exp.location, exp.role);
+
+    li.appendChild(img);
+    li.appendChild(text);
+    list.appendChild(li);
+  });
+</script>
+
+
+
 
 </body>
 </html>
