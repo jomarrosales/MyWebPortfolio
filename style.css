@@ -75,6 +75,10 @@ footer {
 }
 
 
+
+
+
+
 /* Responsive Design */
 @media (max-width: 600px) {
   header h1 {
@@ -86,6 +90,38 @@ footer {
   }
 }
 
+@media (max-width: 768px) {
+
+  /* Stack cards vertically */
+  .container {
+    flex-direction: column;
+  }
+
+  /* Make cards full width */
+  .project-card {
+    width: 100% !important;
+  }
+
+  /* Stack logo + text vertically */
+  #experience-list li,
+  #experience-list-2 li {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  /* Reduce logo size on mobile */
+  #experience-list img,
+  #experience-list-2 img {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Improve text readability */
+  #experience-list strong,
+  #experience-list-2 strong {
+    font-size: 16px;
+  }
+}
 
 /* Basic styling for experience list */
   #experience-list {
