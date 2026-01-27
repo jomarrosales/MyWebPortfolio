@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     return `
       <strong>${role}</strong><br>
-      ${startFormatted} – ${endFormatted}
-      (${duration.years} years, ${duration.months} months)<br>
+      ${startFormatted} – ${endFormatted} |
+      ${duration.years} years, ${duration.months} months<br>
       ${location}
     `;
   }

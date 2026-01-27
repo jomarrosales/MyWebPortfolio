@@ -66,13 +66,12 @@ h2 {
 
 /* educational background */
 .educbg {
+  width: 100%;
   background: #e0e0e0;
-  padding: 40px 20px;
   background-image: url('images/Gallery/PLSP.png'); /* path to your image */
   background-size: cover;        /* scales image to cover entire div */
   background-position: center;   /* centers the image */
   background-repeat: no-repeat;  /* prevents tiling */
-  padding: 40px;                 /* optional: adds spacing inside */
 }
 
 .educbg p {
