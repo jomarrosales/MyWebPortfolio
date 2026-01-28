@@ -106,7 +106,7 @@ h2 {
 .container-favorites {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
+  gap: 30px;
   width: 100%;
   box-sizing: border-box;
   padding: 20px;
@@ -152,6 +152,51 @@ footer {
   flex-direction: row; /* default, left to right */
   justify-content: center;
   
+}
+
+/* Ratings */
+.stars span {
+    font-size:30px;
+    cursor:pointer;
+    color:#ccc;
+  }
+  .stars span.active { color:gold; }
+
+  textarea, input {
+    width:50%;
+    padding:10px;
+    margin-top:10px;
+  }
+
+  button {
+    margin-top:10px;
+    padding:10px;
+    width:50%;
+    background:#000;
+    color:#fff;
+    border:none;
+    cursor:pointer;
+  }
+
+  .review {
+    border-bottom:1px solid #ddd;
+    padding:10px 0;
+  }
+
+#reviews {
+  max-height: 150px;     /* adjust height as you like */
+  overflow-y: auto;
+  padding-right: 10px;
+  margin-top: 10px;
+}
+
+/* Optional: smoother look */
+#reviews::-webkit-scrollbar {
+  width: 6px;
+}
+#reviews::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
 }
 
 

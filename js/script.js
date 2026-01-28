@@ -1,3 +1,4 @@
+/* Years of experience calculation */
 document.addEventListener("DOMContentLoaded", () => {
 
   function computeDuration(startDate, endDate) {
@@ -107,3 +108,79 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+
+
+/* Ratings */
+let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+let rating = 0;
+
+document.querySelectorAll('.stars span').forEach(star => {
+  star.onclick = () => {
+    rating = star.dataset.rate;
+    document.querySelectorAll('.stars span').forEach(s => {
+      s.classList.toggle('active', s.dataset.rate <= rating);
+    });
+  }
+});
+
+function submitReview() {
+  const name = document.getElementById('name').value;
+  const comment = document.getElementById('comment').value;
+
+  if (!name || !comment || rating == 0) {
+    alert('Please complete all fields');
+    return;
+  }
+
+  const review = { name, comment, rating };
+  const reviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+  reviews.push(review);
+  localStorage.setItem('reviews', JSON.stringify(reviews));
+
+  displayReviews();
+  document.getElementById('name').value = '';
+  document.getElementById('comment').value = '';
+}
+
+function displayReviews() {
+  const reviews = JSON.parse(localStorage.getItem('reviews') || '[]');
+  const container = document.getElementById('reviews');
+  container.innerHTML = '';
+
+  reviews.reverse().forEach(r => {
+    container.innerHTML += `
+      <div class="review">
+        <strong>${r.name}</strong><br>
+        ${'★'.repeat(r.rating)}<br>
+        ${r.comment}
+      </div>
+    `;
+  });
+}
+
+displayReviews();
+
+/* Total Review */
+function displayReviews() {
+  const container = document.getElementById("reviews");
+  const total = document.getElementById("totalReviews");
+
+  container.innerHTML = "";
+
+  reviews.forEach(review => {
+    const div = document.createElement("div");
+    div.classList.add("review");
+
+    div.innerHTML = `
+      <strong>${review.name}</strong><br>
+      ${"★".repeat(review.rating)}<br>
+      ${review.text}
+      <hr>
+    `;
+
+    container.appendChild(div);
+  });
+
+  // ✅ Update total reviews count
+  total.textContent = reviews.length;
+}
