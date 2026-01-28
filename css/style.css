@@ -85,7 +85,6 @@ h2 {
 .educbg .project-card {
   background: #424242;
   box-shadow: #fff;
-  color: #222;
   text-align: center;
   width: 100%;
   background-color: rgba(66, 66, 66, 0.6);
@@ -104,27 +103,38 @@ h2 {
 }
 
 /* Favorites */
+.container-favorites {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
 .favorites {
-  margin: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .favorites img{
-  width: auto;
-  height: 300px;
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 .favorites p{
-  text-align:justify;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: justify;
 }
 
 .favorites h4{
   text-align: center;
 }
 
-.container .favorites {
-  width: 200px;
-  display: flex;
-  flex-direction: column;
-}
 
 /* Footer */
 footer {
@@ -141,6 +151,7 @@ footer {
   display: flex;       /* enables flexbox */
   flex-direction: row; /* default, left to right */
   justify-content: center;
+  
 }
 
 
@@ -198,6 +209,12 @@ footer {
   .role {
     font-weight: bold;
   }
+
+  @media (max-width: 600px) {
+  .favorites {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+}
 
 
 
