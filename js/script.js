@@ -161,19 +161,47 @@ function displayReviews() {
 displayReviews();
 
 /* Total Review */
+reviews.push({
+  name,
+  rating: Number(rating), // IMPORTANT
+  text
+});
+
+
+function renderStars(rating) {
+  rating = Math.min(5, Math.max(0, rating)); // clamp 0–5
+  let stars = "";
+  for (let i = 1; i <= 5; i++) {
+    stars += i <= rating ? "★" : "☆";
+  }
+  return stars;
+}
+
+
 function displayReviews() {
   const container = document.getElementById("reviews");
   const total = document.getElementById("totalReviews");
+  const avgStars = document.getElementById("avgStars");
+  const avgNumber = document.getElementById("avgNumber");
 
   container.innerHTML = "";
 
+  let sum = 0;
+  let count = 0;
+
   reviews.forEach(review => {
+    // ✅ Skip invalid ratings
+    if (!review.rating || isNaN(review.rating)) return;
+
+    sum += Number(review.rating);
+    count++;
+
     const div = document.createElement("div");
     div.classList.add("review");
 
     div.innerHTML = `
       <strong>${review.name}</strong><br>
-      ${"★".repeat(review.rating)}<br>
+      <span class="stars">${renderStars(review.rating)}</span><br>
       ${review.text}
       <hr>
     `;
@@ -181,6 +209,12 @@ function displayReviews() {
     container.appendChild(div);
   });
 
-  // ✅ Update total reviews count
-  total.textContent = reviews.length;
+  // ✅ Total reviews
+  total.textContent = count;
+
+  // ✅ Average (ALWAYS 1–5)
+  const avg = count > 0 ? sum / count : 0;
+
+  avgStars.innerHTML = renderStars(Math.round(avg));
+  avgNumber.textContent = `(${avg.toFixed(1)} / 5)`;
 }

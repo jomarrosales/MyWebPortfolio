@@ -190,6 +190,18 @@ footer {
   margin-top: 10px;
 }
 
+.average-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.average-rating .stars {
+  font-size: 22px;
+  color: gold;
+}
+
 /* Optional: smoother look */
 #reviews::-webkit-scrollbar {
   width: 6px;
